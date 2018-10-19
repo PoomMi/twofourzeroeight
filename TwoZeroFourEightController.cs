@@ -8,6 +8,7 @@ namespace twozerofoureight
 {
     class TwoZeroFourEightController : Controller
     {
+        //constant
         public const int LEFT = 0;
         public const int RIGHT = 1;
         public const int UP = 2;
