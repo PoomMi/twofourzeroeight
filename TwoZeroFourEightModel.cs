@@ -192,5 +192,77 @@ namespace twozerofoureight
             }
             HandleChanges(changed);
         }
+
+        public int GetScore()
+        {
+            int score = 0;
+            for (int i = 0; i < boardSize; i++)
+            {
+                for (int j = 0; j < boardSize; j++)
+                {
+                    score += board[i, j];
+                }
+            }
+
+            return score;
+        }
+
+        public bool CheckGameOver()
+        {
+
+            for (int i = 0; i < boardSize; i++)
+            {
+                for (int j = 0; j < boardSize; j++)
+                {
+                    if (board[i, j] == 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            int tmp;
+            for (int i = 0; i < boardSize; i++)
+            {
+                for (int j = 0; j < boardSize; j++)
+                {
+                    tmp = board[i, j];
+                    if (i - 1 >= 0)
+                    {
+                        if (tmp == board[i - 1, j]) { return false; }
+                    }
+                    if (i + 1 <= 3)
+                    {
+                        if (tmp == board[i + 1, j]) { return false; }
+                    }
+                    if (j - 1 >= 0)
+                    {
+                        if (tmp == board[i, j - 1]) { return false; }
+                    }
+                    if (j + 1 <= 3)
+                    {
+                        if (tmp == board[i, j + 1]) { return false; }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public bool CheckWin()
+        {
+            for (int i = 0; i < boardSize; i++)
+            {
+                for (int j = 0; j < boardSize; j++)
+                {
+                    if (board[i, j] == 2048)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }
