@@ -27,9 +27,11 @@ namespace twozerofoureight
 
         public void Notify(Model m)
         {
-            UpdateBoard(((TwoZeroFourEightModel)m).GetBoard());
-            UpdateScore(((TwoZeroFourEightModel)m).GetScore());
-            CheckWin(((TwoZeroFourEightModel)m).CheckWin());
+            UpdateBoard(((TwoZeroFourEightModel)m).GetBoard()); //show borad
+            UpdateScore(((TwoZeroFourEightModel)m).GetScore()); //update score
+
+            //check game status
+            CheckWin(((TwoZeroFourEightModel)m).CheckWin()); 
             CheckLose(((TwoZeroFourEightModel)m).CheckGameOver());
         }
 
@@ -103,52 +105,61 @@ namespace twozerofoureight
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
         }
 
-        private void UpdateScore(int score)
+        private void UpdateScore(int score) //method to show score on display
         {
             lblScore.Text = "score: " + score.ToString();
         }
 
-        private void CheckWin(bool win)
+        private void CheckWin(bool win) //method to check show won status
         {
             if (win)
             {
                 status.Text = "You win";
-                status.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                status.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle; //set border to text box
+
+                //set color to text box
                 status.ForeColor = Color.Red;
                 status.BackColor = Color.Yellow;
-                status.Font = new Font("Microsoft Sans Serif", 40.5f);
-                status.Location = new Point(63, 120);
 
+                status.Font = new Font("Microsoft Sans Serif", 40.5f); //create text box
+                status.Location = new Point(63, 120); //set position of text box
+
+
+                //set button status ---> cannot control game with arrow button
                 btnUp.Enabled = false;
                 btnDown.Enabled = false;
                 btnLeft.Enabled = false;
                 btnRight.Enabled = false;
 
-                KeyPreview = false;
+                KeyPreview = false; //set key status ---> cannot control game with keyboard
             }
         }
 
-        private void CheckLose(bool GameOver)
+        private void CheckLose(bool GameOver) //method to show game over status
         {
             if (GameOver)
             {
                 status.Text = "Game Over";
-                status.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                status.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle; //set border to text box
+
+                //set color text
                 status.ForeColor = Color.Red;
                 status.BackColor = Color.Yellow;
-                status.Font = new Font("Microsoft Sans Serif", 40f);
-                status.Location = new Point(19, 128);
 
+                status.Font = new Font("Microsoft Sans Serif", 40f); //create text box
+                status.Location = new Point(19, 128); //set position of text box
+
+                //set button status ---> cannot control game with arrow button
                 btnUp.Enabled = false;
                 btnDown.Enabled = false;
                 btnLeft.Enabled = false;
                 btnRight.Enabled = false;
 
-                KeyPreview = false;
+                KeyPreview = false; //set key status ---> cannot control game with keyboard
             }
         }
 
-        private void TwoZeroFourEightView_KeyDown(object sender, KeyEventArgs e)
+        private void TwoZeroFourEightView_KeyDown(object sender, KeyEventArgs e) //method to set key control
         {
             if (KeyPreview)
             {
@@ -179,7 +190,7 @@ namespace twozerofoureight
             TwoZeroFourEightView_PreviewKeyDown(sender, e);
         }
 
-        private void TwoZeroFourEightView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void TwoZeroFourEightView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e) //method to set IsInputKey status
         {
             switch (e.KeyCode)
             {

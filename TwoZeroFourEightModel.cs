@@ -193,7 +193,7 @@ namespace twozerofoureight
             HandleChanges(changed);
         }
 
-        public int GetScore()
+        public int GetScore() //method to update score on the board
         {
             int score = 0;
             for (int i = 0; i < boardSize; i++)
@@ -207,7 +207,7 @@ namespace twozerofoureight
             return score;
         }
 
-        public bool CheckGameOver()
+        public bool CheckGameOver() //method to check game over
         {
 
             for (int i = 0; i < boardSize; i++)
@@ -249,7 +249,7 @@ namespace twozerofoureight
             return true;
         }
 
-        public bool CheckWin()
+        public bool CheckWin() //method to check win
         {
             for (int i = 0; i < boardSize; i++)
             {
